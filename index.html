@@ -1,18 +1,38 @@
 <html>
-    <head>
-        <title> Minimal SoundCloud </title>
-    </head>
+  <head>
+    <title> Minimal SoundCloud </title>
+  </head>
 
-    <body>
-        <div align=center style="margin-top:20%">
-            <img src="http://connect.soundcloud.com/2/btn-connect-l.png" id="loginbutton">
-        </div>
-    </body>
-    
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <body>
+   <table border="0" cellpadding="0" cellspaceing="0" width="60%" bgcolor="#f6f6ef" style="margin-left:auto;margin-right:auto">
+    <tr>
+      <td>
+        Logo
+      </td>
+      <td>
+        <form id="searchform">
+        <input id="search" type="search">
+        <input type="submit" style="visibility: hidden">
+        </form>
+      </td>
+      <td>
+        Login
+      </td>
+    </tr>
+    </table>
 
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-    <script src="js/app.js"></script>
+    <table id = "maintable" border="0" cellpadding="0" cellspaceing="0" width="60%" bgcolor="#f6f6ef" style="margin-left:auto;margin-right:auto" >
+     <tr id="playerRow"></tr>
+      <tbody id="tracklist">
+
+      </tbody>
+    </table>
+  </body>
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <script src="js/app.js"></script>
 
 </html>
