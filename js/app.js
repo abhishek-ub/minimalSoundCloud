@@ -21,9 +21,10 @@ function login () {
 var page_size = 50;
 var prevTerm = "";
 function search(term) {
+    // if search term don't change, do nothing
     if (prevTerm == term) { return };
     prevTerm = term;
-
+    // clear previous list
     $("#tracklist").empty();
 
     SC.get('/tracks', {
@@ -41,11 +42,15 @@ function listtracks(tracks) {
     };
 }
 
+var prev_track;
 function ontrackClick (tracks) {
     $("#maintable").find("tr").click(function() {
         console.log(tracks[$(this).index()].title);
         var track_url = tracks[$(this).index()].uri;
-
+        
+        if (prev_track == track_url) { return};
+        prev_track = track_url;
+        
         SC.oEmbed(track_url, { auto_play: true, show_artwork: false}).then(function(oEmbed) {
             console.log('oEmbed response: ', oEmbed);
             var frame = oEmbed.html.replace("visual=true", "visual=false");
