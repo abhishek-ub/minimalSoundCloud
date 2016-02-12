@@ -1,2 +1,3 @@
 # minimalSoundCloud
-minimalist interface to soundCloud, Search and play tracks fom soundcloud
+Small search and play interface to soundCloud.
+Built to save my 3G data
