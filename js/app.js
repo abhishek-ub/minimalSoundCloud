@@ -45,7 +45,7 @@ function listtracks(tracks) {
 
 var prev_track;
 function ontrackClick (tracks) {
-    $("#maintable").find("tr").click(function() {
+    $("#tracklist").find("tr").click(function() {
         console.log(tracks[$(this).index()].title);
         var track_url = tracks[$(this).index()].uri;
 
@@ -81,7 +81,6 @@ $(function () {
     var toggleone = false;
     var widget = SC.Widget("playerwidget");
     $("#replay").click(function(){
-        console.log(toggleone);
         if(toggleone == false) {
             toggleone = true;
             $(this).css('color', '#ff6611');
