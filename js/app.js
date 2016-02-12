@@ -38,26 +38,24 @@ function search(term) {
 
 function listtracks(tracks) {
     for (var i = 0; i <tracks.length  ; i++) {
-        $("#maintable > tbody:last").append('<tr><td>'+ tracks[i].title.toLowerCase() + ' </td></tr>');
+        $("#maintable > tbody:last").append('<tr><td class="links">'+ tracks[i].title.toLowerCase() + ' </td></tr>');
     };
 }
+
 
 var prev_track;
 function ontrackClick (tracks) {
     $("#maintable").find("tr").click(function() {
         console.log(tracks[$(this).index()].title);
         var track_url = tracks[$(this).index()].uri;
-        
+
         if (prev_track == track_url) { return};
         prev_track = track_url;
-        
-        SC.oEmbed(track_url, { auto_play: true, show_artwork: false}).then(function(oEmbed) {
-            console.log('oEmbed response: ', oEmbed);
-            var frame = oEmbed.html.replace("visual=true", "visual=false");
-            var re = (/(height=")(\d+")/g);
-            frame = frame.replace(re, "height=\"150\"");
-            $("#playerRow").html('<td>'+ frame + ' </td>');
-        });
+
+        var widget = SC.Widget("playerwidget");
+
+        widget.load(track_url, {auto_play:true, show_artwork:false,
+                                height:"150",visual:false});
 
     });
 }
@@ -77,7 +75,34 @@ $(function () {
     $("#searchform").on("submit", function(e) {
         e.preventDefault();
         search($("#search").val());
-        
+
+    });
+
+    var toggleone = false;
+    var widget = SC.Widget("playerwidget");
+    $("#replay").click(function(){
+        console.log(toggleone);
+        if(toggleone == false) {
+            toggleone = true;
+            $(this).css('color', '#ff6611');
+        }else {
+            toggleone = false;
+            $(this).css('color', 'black');
+        }
+    });
+
+    var duration;
+    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
+        widget.getDuration(function(dur){
+            duration = dur;
+        });
+        if(toggleone){
+            widget.getPosition(function(position){
+                if((duration - position) <= 1000 ){
+                    widget.seekTo(0);
+                }
+            });
+        }
     });
 });
 

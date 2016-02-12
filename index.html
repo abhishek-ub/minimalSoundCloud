@@ -3,7 +3,17 @@
     <title> Minimal SoundCloud </title>
   </head>
 
+  <style type="text/css">
+  .links:hover{
+    color:#ff6611;
+  } 
+  .replayglyph:hover{
+   cursor: pointer;
+  }
+  </style>
+
   <body>
+
    <table border="0" cellpadding="0" cellspaceing="0" width="60%" bgcolor="#ff6611" style="margin-left:auto;margin-right:auto">
     <tr>
       <td>
@@ -21,8 +31,20 @@
     </tr>
     </table>
 
-    <table id = "maintable" border="0" cellpadding="0" cellspaceing="0" width="60%" bgcolor="#f6f6ef" style="margin-left:auto;margin-right:auto" >
-     <tr id="playerRow"></tr>
+    <table id = "maintable" border="0" cellpadding="5" cellspaceing="0" width="60%" bgcolor="#f6f6ef" style="margin-left:auto;margin-right:auto" >
+
+     <tr id="playerRow">
+       <td>
+        <iframe id="playerwidget" width="100%" height="150" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=false&amp;url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F186501938&amp;show_artwork=false&amp;auto_play=false"></iframe>
+       </td>
+     </tr>
+     <!-- Controls -->
+     <tr></tr>>
+      <td bgcolor="#d5d2d2" style="padding-left:2px">
+          <span id="replay" class="replayglyph"><font size="5">&#8634;</font></span>
+      </td>
+     </tr>
+
       <tbody id="tracklist">
        <td>
         <h2>
@@ -32,6 +54,7 @@
         </h3>
        </td>
       </tbody>
+
     </table>
   </body>
   
@@ -39,6 +62,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
   <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <script src="https://w.soundcloud.com/player/api.js"></script>
   <script src="js/app.js"></script>
 
 </html>
